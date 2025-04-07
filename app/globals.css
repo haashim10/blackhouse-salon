@@ -7,15 +7,17 @@
   --foreground: #000000;
   --accent: #1a1a1a;
   --muted: #666666;
+  --nav-bg: rgba(255, 255, 255, 0.9);
+  --nav-border: rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ffffff;
-    --accent: #e5e5e5;
-    --muted: #999999;
-  }
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --accent: #e5e5e5;
+  --muted: #999999;
+  --nav-bg: rgba(0, 0, 0, 0.9);
+  --nav-border: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -23,6 +25,7 @@ body {
   background: var(--background);
   font-family: 'Helvetica Neue', Arial, sans-serif;
   letter-spacing: -0.02em;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .hero-text {
@@ -34,6 +37,142 @@ body {
 
 .nav-link {
   text-transform: uppercase;
-  font-size: 0.875rem;
+  font-size: 0.65rem; /* Smaller text (text-xs equivalent) */
+  font-weight: normal; /* Not bold */
   letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover:after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Dropdown menu animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu {
+  animation: slideDown 0.2s ease-out forwards;
+}
+
+/* Text animation keyframes */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 1s steps(20, end) forwards;
+}
+
+.typing-1 {
+  animation-delay: 0s;
+  border-right: none;
+  animation: 
+    typing 1s steps(20, end) forwards,
+    blink 1s step-end infinite,
+    hide-cursor 0.1s 3s forwards;
+  animation-delay: 0s, 2s, 3s;
+}
+
+.typing-2 {
+  animation-delay: 1s;
+  border-right: none;
+  animation: 
+    typing 1s steps(20, end) forwards,
+    blink 1s step-end infinite,
+    hide-cursor 0.1s 3s forwards;
+  animation-delay: 1s, 2s, 3s;
+}
+
+.typing-3 {
+  animation-delay: 2s;
+  border-right: 3px solid var(--foreground);
+  animation: 
+    typing 1s steps(20, end) forwards,
+    blink 1s step-end infinite,
+    hide-cursor 0.1s 3s forwards;
+  animation-delay: 2s, 2s, 3s;
+}
+
+/* For smoother image transitions */
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 800ms;
+}
+
+/* Image reveal animation */
+@keyframes imageReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.image-reveal {
+  animation: imageReveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Additional utility classes for animations */
+@layer utilities {
+  .animate-text-reveal {
+    animation: textReveal 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 1s ease forwards;
+  }
+  
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animate-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  .animate-delay-900 {
+    animation-delay: 900ms;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

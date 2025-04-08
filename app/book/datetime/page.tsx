@@ -11,10 +11,6 @@ const getDaysInMonth = (year: number, month: number) => {
   return new Date(year, month + 1, 0).getDate();
 };
 
-const getMonthName = (month: number) => {
-  return new Date(0, month).toLocaleString('default', { month: 'long' });
-};
-
 const getDayName = (year: number, month: number, day: number) => {
   return new Date(year, month, day).toLocaleString('default', { weekday: 'short' });
 };
@@ -22,6 +18,12 @@ const getDayName = (year: number, month: number, day: number) => {
 const formatDate = (year: number, month: number, day: number) => {
   return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 };
+
+const getMonthName = (month: number) => {
+  return new Date(2000, month).toLocaleString('default', { month: 'long' });
+};
+
+const currentDate = new Date();
 
 // Generate slots for demo purposes
 const generateTimeSlots = () => {
@@ -56,17 +58,12 @@ const DateTimeSelectionPage = () => {
   const router = useRouter();
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [selectedStylist, setSelectedStylist] = useState<Stylist | null>(null);
-  
-  // Calendar state
-  const currentDate = new Date();
   const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
   const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  
-  // Time slots
   const [timeSlots, setTimeSlots] = useState<{time: string, available: boolean}[]>([]);
-  
+
   useEffect(() => {
     // Retrieve selected service and stylist from session storage
     const serviceData = sessionStorage.getItem('selectedService');

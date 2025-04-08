@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,7 +8,6 @@ export default function Home() {
   const [currentImage, setCurrentImage] = useState(0);
   const [showImages, setShowImages] = useState(false);
   const [initialImageLoaded, setInitialImageLoaded] = useState(false);
-  const headingRef = useRef(null);
 
   const images = [
     "/hairstyleimage3.jpg",
@@ -16,21 +15,19 @@ export default function Home() {
     "/hairstyleimage1.jpg",
   ];
 
-  // Start image carousel after text animation
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowImages(true);
-    }, 3500); // Start showing images after text animation (3s)
+    }, 3500);
 
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle image carousel
   useEffect(() => {
     if (showImages && initialImageLoaded) {
       const interval = setInterval(() => {
         setCurrentImage((prev) => (prev + 1) % images.length);
-      }, 3000); // Change image every 4 seconds
+      }, 3000);
 
       return () => clearInterval(interval);
     }
@@ -39,7 +36,6 @@ export default function Home() {
   return (
     <main>
       <section className="h-screen flex items-center justify-center relative overflow-hidden">
-        {/* Background layer with images */}
         <div className="absolute inset-0">
           {showImages && (
             <div className="w-full h-full relative">
@@ -69,7 +65,6 @@ export default function Home() {
           )}
         </div>
 
-        {/* Text animation container */}
         <div className="relative z-10 px-4 flex items-center justify-center md:justify-start w-full max-w-7xl">
           <h1 className="text-5xl md:text-7xl text-foreground font-light uppercase tracking-widest space-y-4">
             <div className="flex justify-center md:justify-start">
@@ -96,7 +91,6 @@ export default function Home() {
           </h1>
         </div>
 
-        {/* Call-to-action button */}
         <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-20 fade-in fade-in-delay">
           <Link
             href="/book"

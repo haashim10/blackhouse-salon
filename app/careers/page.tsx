@@ -28,7 +28,7 @@ export default function Careers() {
           <div className="space-y-6">
             <h2 className="text-2xl uppercase">Join Our Team</h2>
             <p className="text-muted">
-              At BLACKHOUSE SALON, we're always looking for talented individuals who share our passion for creativity and excellence in hair styling.
+              At BLACKHOUSE SALON, we&apos;re always looking for talented individuals who share our passion for creativity and excellence in hair styling.
             </p>
             
             <div className="space-y-4">

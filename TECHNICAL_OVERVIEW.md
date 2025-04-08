@@ -1,10 +1,10 @@
 # BLACKHOUSE SALON Technical Overview
 
 ## Stack
-- Next.js 15.1.5 (React Framework)
+- Next.js 14.1.0 (React Framework)
 - TypeScript
 - Tailwind CSS
-- React 19
+- React 18
 
 ## Project Structure
 ```

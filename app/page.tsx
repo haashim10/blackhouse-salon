@@ -1,113 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import IntegratedHeroAndServices from "./components/IntegratedHeroAndServices";
+// Uncomment the following line only after confirming the component and image exist
+// import VirtualConsultationPromo from "./components/VirtualConsultationPromo";
 
 export default function Home() {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [showImages, setShowImages] = useState(false);
-  const [initialImageLoaded, setInitialImageLoaded] = useState(false);
-
-  const images = [
-    "/hairstyleimage3.jpg",
-    "/hairstyleimage2.jpg",
-    "/hairstyleimage1.jpg",
-  ];
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowImages(true);
-    }, 3500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (showImages && initialImageLoaded) {
-      const interval = setInterval(() => {
-        setCurrentImage((prev) => (prev + 1) % images.length);
-      }, 3000);
-
-      return () => clearInterval(interval);
-    }
-  }, [showImages, initialImageLoaded, images.length]);
-
   return (
-    <main>
-      <section className="h-screen flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0">
-          {showImages && (
-            <div className="w-full h-full relative">
-              {images.map((img, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 flex items-center justify-center transition-opacity duration-800 ease-in-out ${
-                    currentImage === index ? "opacity-100" : "opacity-0"
-                  } ${index === 0 && !initialImageLoaded ? 'image-reveal' : ''}`}
-                  onAnimationEnd={() => {
-                    if (index === 0) setInitialImageLoaded(true);
-                  }}
-                >
-                  <div className="relative w-3/4 h-3/4 max-w-3xl max-h-3xl shadow-2xl rounded-sm overflow-hidden">
-                    <Image
-                      src={img}
-                      alt={`Hairstyle ${index + 1}`}
-                      fill
-                      priority
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 75vw"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+    <main className="pt-[20px]">
+      {/* Integrated Hero and Services Showcase */}
+      <IntegratedHeroAndServices />
 
-        <div className="relative z-10 px-4 flex items-center justify-center md:justify-start w-full max-w-7xl">
-          <h1 className="text-5xl md:text-7xl text-foreground font-light uppercase tracking-widest space-y-4">
-            <div className="flex justify-center md:justify-start">
-              <span className="block overflow-hidden">
-                <span className="inline-block typing-animation typing-1">
-                  Styling
-                </span>
-              </span>
-            </div>
-            <div className="flex justify-center md:justify-start">
-              <span className="block overflow-hidden">
-                <span className="inline-block typing-animation typing-2">
-                  Done
-                </span>
-              </span>
-            </div>
-            <div className="flex justify-center md:justify-start">
-              <span className="block overflow-hidden">
-                <span className="inline-block typing-animation typing-3">
-                  By Professionals.
-                </span>
-              </span>
-            </div>
-          </h1>
-        </div>
+      {/* Virtual Consultation Promo - uncomment when image is ready */}
+      {/* <VirtualConsultationPromo /> */}
 
-        <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-20 fade-in fade-in-delay">
-          <Link
-            href="/book"
-            className="px-8 py-3 bg-white text-black uppercase tracking-wider text-sm hover:bg-gray-100 transition-colors"
-          >
-            Book Now
-          </Link>
-        </div>
-      </section>
-
+      {/* Original About Section - Kept as is */}
       <section className="py-32 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="space-y-6">
-            <h2 className="text-3xl uppercase">Premium Services</h2>
+            <h2 className="text-3xl uppercase">
+              Premium Services | Priced Fairly
+            </h2>
             <p className="text-muted">
               Experience the art of hair styling with our expert team. We
-              combine traditional techniques with modern aesthetics.
+              combine traditional techniques with modern aesthetics. We are
+              constantly striving to exceed clients expectations with
+              breathtaking colour and creative cutting.
             </p>
             <Link
               href="/book"
@@ -116,9 +35,9 @@ export default function Home() {
               Book Appointment
             </Link>
           </div>
-          <div className="aspect-[4/5] bg-accent/10 overflow-hidden relative">
+          <div className="aspect-[4/5] bg-accent/10 overflow-hidden relative w-4/5 mx-auto md:w-3/4">
             <Image
-              src="/hairstyleimage3.jpg"
+              src="/Gallery1.png"
               alt="Premium haircut service"
               fill
               className="object-cover hover:scale-110 transition-transform duration-700"

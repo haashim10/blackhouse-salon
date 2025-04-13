@@ -1,23 +1,47 @@
-'use client';
+"use client";
 
-import { useTheme } from './theme-provider';
+import { useTheme } from "./theme-provider";
 
-export default function ThemeToggle() {
+interface ThemeToggleProps {
+  textColor?: string;
+}
+
+export default function ThemeToggle({ textColor }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
+
+  // Determine background color based on theme and provided text color
+  const getBackgroundColor = () => {
+    if (textColor) {
+      return `${textColor}33`; // Use semi-transparent version of the text color
+    }
+    return theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)';
+  };
+
+  // Determine thumb color based on provided text color
+  const getThumbColor = () => {
+    if (textColor === '#ffffff' || textColor === '#fff') {
+      return theme === 'dark' ? '#000000' : '#ffffff';
+    }
+    return theme === 'dark' ? '#000000' : '#ffffff';
+  };
 
   return (
     <button 
       onClick={toggleTheme}
-      className="relative inline-flex items-center p-1 rounded-full w-12 h-6 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white"
+      className="relative inline-flex items-center p-1 rounded-full w-12 h-6 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
       style={{ 
-        backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
-      }}
+        backgroundColor: getBackgroundColor(),
+        color: textColor || 'inherit',
+        // Customize focus ring color if text color is provided
+        '--tw-ring-color': textColor || (theme === 'dark' ? 'white' : 'black'),
+      } as React.CSSProperties}
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
       <span 
-        className={`absolute left-0.5 top-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-white dark:bg-black transform transition-transform ${
+        className={`absolute left-0.5 top-0.5 flex items-center justify-center w-5 h-5 rounded-full transform transition-transform ${
           theme === 'dark' ? 'translate-x-6' : 'translate-x-0'
         }`}
+        style={{ backgroundColor: getThumbColor() }}
       >
         {theme === 'light' ? (
           // Sun icon for light mode

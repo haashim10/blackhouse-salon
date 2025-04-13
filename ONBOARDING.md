@@ -14,7 +14,6 @@ The site features:
 - Responsive design with dark/light theme
 - Booking system
 - Team/stylist profiles
-- Service catalog
 - Gift card system
 - Image carousel
 - Animated components
@@ -28,10 +27,24 @@ npm install
 
 2. Start development server:
 ```bash
-npm run dev
+npm run dev  # Uses Next.js built-in development server
 ```
 
 3. View the site at: http://localhost:3000
+
+### Docker Setup (Optional)
+
+The project includes Docker configuration for both development and production environments:
+
+1. Development:
+```bash
+docker-compose up app-dev
+```
+
+2. Production:
+```bash
+docker-compose up app-prod
+```
 
 ## Project Structure
 
@@ -45,7 +58,6 @@ app/                    # Next.js App Router structure
 ├── contact/           # Contact page
 ├── opening-times/     # Opening times
 ├── reviews/           # Reviews page
-├── services/          # Services catalog
 ├── team/              # Team profiles
 ├── globals.css        # Global styles
 ├── layout.tsx         # Root layout (navigation)
@@ -191,3 +203,5 @@ The project is configured for deployment on Vercel:
 - Outputs standalone build
 - Optimizes images
 - Handles routing automatically
+
+You can also deploy using Docker with the provided configuration files.

@@ -114,27 +114,36 @@ main {
 }
 
 .typing-1 {
-  animation-delay: 0s;
-  border-right: 3px solid var(--foreground);
-  animation: typing 1s steps(20, end) forwards, blink 1s step-end infinite,
-    hide-cursor 0.1s 3s forwards;
-  animation-delay: 0s, 2s, 3s;
+  border-right: 3px solid transparent; /* Start with invisible cursor */
+  animation: typing 1s steps(20, end) forwards,
+    /* Text typing animation */ cursor-appear 0.01s 0s forwards,
+    /* Make cursor appear immediately */ blink 1s step-end infinite,
+    /* Blinking cursor effect */ hide-cursor 0.1s 1s forwards; /* Hide cursor when typing completes */
+  animation-delay: 0s, 0s, 0s, 1s; /* Timing for each animation */
 }
 
 .typing-2 {
-  animation-delay: 1s;
-  border-right: 3px solid var(--foreground);
-  animation: typing 1s steps(20, end) forwards, blink 1s step-end infinite,
-    hide-cursor 0.1s 3s forwards;
-  animation-delay: 1s, 2s, 3s;
+  border-right: 3px solid transparent; /* Start with invisible cursor */
+  animation: typing 1s steps(20, end) forwards,
+    /* Text typing animation */ cursor-appear 0.01s 1s forwards,
+    /* Make cursor appear at 1s */ blink 1s step-end infinite,
+    /* Blinking cursor effect */ hide-cursor 0.1s 2s forwards; /* Hide cursor when typing completes */
+  animation-delay: 1s, 1s, 1s, 2s; /* Timing for each animation */
 }
 
 .typing-3 {
-  animation-delay: 2s;
-  border-right: 3px solid var(--foreground);
-  animation: typing 1s steps(20, end) forwards, blink 1s step-end infinite,
-    hide-cursor 0.1s 3s forwards;
-  animation-delay: 2s, 2s, 3s;
+  border-right: 3px solid transparent; /* Start with invisible cursor */
+  animation: typing 1s steps(20, end) forwards,
+    /* Text typing animation */ cursor-appear 0.01s 2s forwards,
+    /* Make cursor appear at 2s */ blink 1s step-end infinite,
+    /* Blinking cursor effect */ hide-cursor 0.1s 3s forwards; /* Hide cursor when typing completes */
+  animation-delay: 2s, 2s, 2s, 3s; /* Timing for each animation */
+}
+
+@keyframes cursor-appear {
+  to {
+    border-right-color: var(--foreground);
+  }
 }
 /* Fix the typing animation keyframes */
 @keyframes typing {

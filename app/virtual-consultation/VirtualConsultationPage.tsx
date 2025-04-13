@@ -5,6 +5,7 @@ import ConsultationForm from "../components/ConsultationForm";
 import LoadingScreen from "../components/LoadingScreen";
 import ResultsGallery from "../components/ResultsGallery";
 import Image from "next/image";
+import { useTheme } from "../components/theme-provider";
 
 interface ConsultationFormData {
   gender: 'male' | 'female';
@@ -18,6 +19,7 @@ interface ConsultationFormData {
 }
 
 export default function VirtualConsultationPage() {
+  const { theme } = useTheme();
   const [step, setStep] = useState<"form" | "loading" | "results">("form");
   const [results, setResults] = useState<string[]>([]);
   const [consultationData, setConsultationData] = useState<ConsultationFormData | null>(null);
@@ -54,6 +56,12 @@ export default function VirtualConsultationPage() {
   const handleStartOver = () => {
     setStep("form");
     setResults([]);
+  };
+
+  // Dark mode icon style with filter
+  const iconStyle = {
+    filter: theme === 'dark' ? 'invert(1) brightness(1.5) hue-rotate(180deg)' : 'none',
+    transition: 'filter 0.3s ease'
   };
 
   return (
@@ -93,6 +101,7 @@ export default function VirtualConsultationPage() {
                   alt="Customize icon"
                   fill
                   className="object-contain"
+                  style={iconStyle}
                 />
               </div>
               <h3 className="text-xl font-medium mb-2">Customize Your Look</h3>
@@ -109,6 +118,7 @@ export default function VirtualConsultationPage() {
                   alt="Visualize icon"
                   fill
                   className="object-contain"
+                  style={iconStyle}
                 />
               </div>
               <h3 className="text-xl font-medium mb-2">
@@ -127,6 +137,7 @@ export default function VirtualConsultationPage() {
                   alt="Book icon"
                   fill
                   className="object-contain"
+                  style={iconStyle}
                 />
               </div>
               <h3 className="text-xl font-medium mb-2">

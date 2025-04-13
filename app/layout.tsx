@@ -4,6 +4,7 @@ import { ThemeProvider } from "./components/theme-provider";
 import { CartProvider } from "./context/cart-context";
 import { ServiceProvider } from "./context/service-context";
 import Navigation from "./components/navigation";
+import Footer from "./components/footer";
 
 export const metadata: Metadata = {
   title: "BLACKHOUSE SALON | Modern Hair Styling",
@@ -26,6 +27,7 @@ export default function RootLayout({
                 <main className="pt-24 flex-grow z-10 relative">
                   {children}
                 </main>
+                <Footer />
               </div>
             </ServiceProvider>
           </CartProvider>

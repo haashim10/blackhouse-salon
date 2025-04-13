@@ -225,7 +225,7 @@ export default function IntegratedHeroAndServices() {
   return (
     <>
       <section
-        className={`h-[calc(100vh-20px)] flex items-center justify-center relative overflow-hidden`}
+        className={`h-screen flex items-center justify-center relative overflow-hidden pt-0 -mt-24`}
       >
         <div className="absolute inset-0">
           {showHeroImage && (
@@ -247,7 +247,7 @@ export default function IntegratedHeroAndServices() {
         </div>
 
         <div className="relative z-10 px-4 flex items-center justify-center md:justify-start w-full max-w-7xl">
-          <h1 className="text-5xl md:text-7xl text-foreground font-light uppercase tracking-widest space-y-4">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl text-foreground font-light uppercase tracking-widest space-y-4 px-2">
             <div className="flex justify-center md:justify-start">
               <span className="block overflow-hidden">
                 <span className="inline-block typing-animation typing-1">
@@ -263,9 +263,9 @@ export default function IntegratedHeroAndServices() {
               </span>
             </div>
             <div className="flex justify-center md:justify-start">
-              <span className="block overflow-hidden">
+              <span className="block overflow-hidden max-w-[95vw] sm:max-w-none">
                 <span
-                  className="inline-block typing-animation typing-3"
+                  className="inline-block typing-animation typing-3 text-3xl sm:text-4xl md:text-7xl"
                   onAnimationEnd={handleTextAnimationEnd}
                 >
                   By Professionals.
